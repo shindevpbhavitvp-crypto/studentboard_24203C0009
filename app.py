@@ -3,6 +3,7 @@ from config.db import db
 from models.user import User
 from routes.auth_routes import auth_bp
 from flask_jwt_extended import JWTManager
+from flask_jwt_extended import jwt_required
 
 app = Flask(__name__)
 
@@ -17,6 +18,11 @@ app.register_blueprint(auth_bp)
 @app.route('/')
 def home():
     return {"message": "Student Notice Board API"}
+
+@app.route('/profile')
+@jwt_required()
+def profile():
+    return {"message": "Protected Route Accessed"}
 
 with app.app_context():
     db.create_all()
