@@ -4,6 +4,8 @@ from models.user import User
 from routes.auth_routes import auth_bp
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import jwt_required
+from models.category import Category
+from routes.category_routes import category_bp
 
 app = Flask(__name__)
 
@@ -14,6 +16,7 @@ jwt = JWTManager(app)
 
 db.init_app(app)
 app.register_blueprint(auth_bp)
+app.register_blueprint(category_bp)
 
 @app.route('/')
 def home():
