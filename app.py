@@ -6,6 +6,8 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import jwt_required
 from models.category import Category
 from routes.category_routes import category_bp
+from models.comment import Comment
+from routes.comment_routes import comment_bp
 
 app = Flask(__name__)
 
@@ -17,6 +19,7 @@ jwt = JWTManager(app)
 db.init_app(app)
 app.register_blueprint(auth_bp)
 app.register_blueprint(category_bp)
+app.register_blueprint(comment_bp)
 
 @app.route('/')
 def home():
